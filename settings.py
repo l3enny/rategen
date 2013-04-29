@@ -13,6 +13,6 @@ kargs = {'x':0.5}
 dump = 'ralchenko'
 comments = {'Cross-Sections':'Ralchenko, 2008',
             'Distribution':'Generalized Maxwellian',
-            'x':x,
+            'x':kargs['x'],
             'Temperatures':'0.1-100 eV, log spacing, 50 points',
             'Author':'Ben Yee'}
