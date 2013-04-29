@@ -17,5 +17,5 @@ class Rates(object):
         return spline(Te)
     def km(self, Te):
         #TODO: Store splines in memory for speedup
-        spline = UnivariateSpline(self.temperatures, rates, s=0, k=2)
+        spline = UnivariateSpline(self.temperatures, self.rates, s=0, k=2)
         return spline(Te)
