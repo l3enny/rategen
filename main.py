@@ -2,6 +2,7 @@
 import cPickle
 
 # Included packages
+from constants import kB
 import convolve
 import rates
 
