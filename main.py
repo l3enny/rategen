@@ -20,7 +20,8 @@ for temperature in settings.temperatures:
             K = convolve.rate(transition, eedf)
             output[-1][i][f] = K
 
-ralchenko = rates.Rates(settings.temperatures, output, settings.comments)
+print "output:", output
+ralchenko = rates.Rates(settings.temperatures/kB, output, settings.comments)
 with open('ralchenko.pickle', mode='w') as f:
     p = cPickle.Pickler(f, protocol=2)
     p.dump(ralchenko)

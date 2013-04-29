@@ -2,9 +2,9 @@ import xsections.helium.ralchenko as xsections
 import distributions
 import numpy as np
 from xsections.helium.states import states
-from constants import *
+from constants import q
 
-temperatures = np.logspace(-1, 2) * q
+temperatures = np.logspace(-1, 2, 10) * q
 
 # Define the distribution to use and any inputs besides the temperature
 distribution = distributions.drumax

@@ -8,13 +8,14 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 main.py
+badd +1 main.py
 badd +25 distributions.py
-badd +0 rate.py
+badd +1 rate.py
 badd +30 xsections/helium/ralchenko.py
-badd +0 settings.py
+badd +1 settings.py
+badd +0 convolve.py
 silent! argdel *
-edit rate.py
+edit convolve.py
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -32,14 +33,14 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 35 + 36) / 72)
-exe 'vert 1resize ' . ((&columns * 103 + 103) / 207)
-exe '2resize ' . ((&lines * 34 + 36) / 72)
-exe 'vert 2resize ' . ((&columns * 103 + 103) / 207)
-exe '3resize ' . ((&lines * 35 + 36) / 72)
-exe 'vert 3resize ' . ((&columns * 103 + 103) / 207)
-exe '4resize ' . ((&lines * 34 + 36) / 72)
-exe 'vert 4resize ' . ((&columns * 103 + 103) / 207)
+exe '1resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 1resize ' . ((&columns * 88 + 89) / 178)
+exe '2resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 2resize ' . ((&columns * 88 + 89) / 178)
+exe '3resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 3resize ' . ((&columns * 89 + 89) / 178)
+exe '4resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 4resize ' . ((&columns * 89 + 89) / 178)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -50,12 +51,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 25 - ((24 * winheight(0) + 17) / 35)
+let s:l = 1 - ((0 * winheight(0) + 14) / 29)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-25
-normal! 018l
+1
+normal! 0
 wincmd w
 argglobal
 edit distributions.py
@@ -68,7 +69,7 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 14 - ((2 * winheight(0) + 17) / 34)
+let s:l = 14 - ((0 * winheight(0) + 14) / 29)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -86,7 +87,7 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 5 - ((4 * winheight(0) + 17) / 35)
+let s:l = 5 - ((0 * winheight(0) + 14) / 29)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -104,22 +105,21 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 10 - ((9 * winheight(0) + 17) / 34)
+let s:l = 8 - ((6 * winheight(0) + 14) / 29)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-10
-normal! 042l
+8
+normal! 0
 wincmd w
-4wincmd w
-exe '1resize ' . ((&lines * 35 + 36) / 72)
-exe 'vert 1resize ' . ((&columns * 103 + 103) / 207)
-exe '2resize ' . ((&lines * 34 + 36) / 72)
-exe 'vert 2resize ' . ((&columns * 103 + 103) / 207)
-exe '3resize ' . ((&lines * 35 + 36) / 72)
-exe 'vert 3resize ' . ((&columns * 103 + 103) / 207)
-exe '4resize ' . ((&lines * 34 + 36) / 72)
-exe 'vert 4resize ' . ((&columns * 103 + 103) / 207)
+exe '1resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 1resize ' . ((&columns * 88 + 89) / 178)
+exe '2resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 2resize ' . ((&columns * 88 + 89) / 178)
+exe '3resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 3resize ' . ((&columns * 89 + 89) / 178)
+exe '4resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 4resize ' . ((&columns * 89 + 89) / 178)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
