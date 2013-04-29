@@ -5,8 +5,6 @@ import cPickle
 from constants import kB
 import convolve
 import rates
-
-# Import settings: temperatures, distribution, kargs, dump, comments
 import settings
 
 output = []
@@ -14,7 +12,7 @@ for temperature in settings.temperatures:
     eedf = settings.distribution(temperature, **settings.kargs)
     print "Calculating at temperature:", temperature
     if elastic:
-        K = convolve.rate2(sigma, eedf)
+        K = convolve.rate2(settings.sigma, eedf)
     else:
         output.append({})
         for i in settings.states:
