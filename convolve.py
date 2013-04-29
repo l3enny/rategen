@@ -2,7 +2,7 @@ from numpy import array, log, exp, isnan, logspace, log10
 from scipy.integrate import quad, trapz
 from scipy.special import gamma
 
-from constants import *
+from constants import q, me
 
 def rate(transition, f):
     if transition.undefined:

@@ -1,12 +1,16 @@
-import rate
-from settings import *
+# Standard library modules
 import cPickle
-import pprint
-import test
+
+# Included packages
+import convolve
+import rates
+
+# Import settings: temperatures, distribution, kargs, dump, comments
+import settings
 
 output = []
-for temperature in temperatures:
-    eedf = distribution(temperature, **kargs)
+for temperature in settings.temperatures:
+    eedf = settings.distribution(temperature, **settings.kargs)
     output.append({})
     for i in states:
         output[-1][i] = {}
@@ -15,14 +19,7 @@ for temperature in temperatures:
             K = rate.rate(transition, eedf)
             output[-1][i][f] = K
 
-ralchenko = test.Rates(temperatures, output)
+ralchenko = rates.Rates(temperatures, output, settings.comments)
 with open('ralchenko.pickle', mode='w') as f:
     p = cPickle.Pickler(f, protocol=2)
     p.dump(ralchenko)
-
-#with open(dump + '_rate.txt', mode='w') as f:
-#    printer = pprint.PrettyPrinter(indent=2, stream=f)
-#    printer.pprint(output)
-
-#with open(dump + '_temps.txt', mode='w') as f:
-#    f.write(repr(temperatures))
