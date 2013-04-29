@@ -1,4 +1,4 @@
-import xsections.helium.pack.sigma as sigma
+from xsections.helium.pack import sigma
 import distributions
 import numpy as np
 from constants import q
