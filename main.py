@@ -12,17 +12,19 @@ import settings
 output = []
 for temperature in settings.temperatures:
     eedf = settings.distribution(temperature, **settings.kargs)
-    output.append({})
     print "Calculating at temperature:", temperature
-    for i in settings.states:
-        output[-1][i] = {}
-        for f in settings.states:
-            transition = settings.xsections.Transition(i, f)
-            K = convolve.rate(transition, eedf)
-            output[-1][i][f] = K
+    if elastic:
+        K = convolve.rate2(sigma, eedf)
+    else:
+        output.append({})
+        for i in settings.states:
+            output[-1][i] = {}
+            for f in settings.states:
+                transition = settings.xsections.Transition(i, f)
+                K = convolve.rate(transition, eedf)
+                output[-1][i][f] = K
 
-print "output:", output
-ralchenko = rates.Rates(settings.temperatures/kB, output, settings.comments)
-with open('ralchenko.pickle', mode='w') as f:
+container = rates.Rates(settings.temperatures/kB, output, settings.comments)
+with open(dump + '.pickle', mode='w') as f:
     p = cPickle.Pickler(f, protocol=2)
-    p.dump(ralchenko)
+    p.dump(container)

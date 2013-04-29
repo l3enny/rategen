@@ -23,3 +23,16 @@ def rate(transition, f):
     values = integrand(energies)
     integral = trapz(values, energies)
     return integral
+
+def rate2(sigma, f):
+    def integrand(E):
+        # set up integrand for quadpack
+        return sigma(E) * f(E) * (2*E/me)**0.5
+    # Calculate the rate coefficient provided a list of electron temperatures
+    # and the expected distribution
+    Emin = -2
+    Emax = log10((1e3)/q)
+    energies = logspace(Emin, Emax, num=1e4) * q
+    values = integrand(energies)
+    integral = trapz(values, energies)
+    return integral

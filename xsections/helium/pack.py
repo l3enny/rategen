@@ -1,12 +1,14 @@
 """
-Helium-e momentum transfer cross section values from:
+Low energy He-e momentum transfer cross section values from:
 Pack, J.L. et al. in J. Appl. Phys. 71, 5363, 1992.
+
+At high energies, 1/E scaling
 
 Transcribed by Ben Yee
 """
 
 from constants import q
-from numpy import array
+from numpy import array, append
 from scipy.interpolate import UnivariateSpline
 
 E = array([0.000, 0.0025, 0.0036, 0.010, 0.032, 0.200, 0.600, 1.400, 3.000,
@@ -18,5 +20,7 @@ Q = array([4.95, 5.00, 5.10, 5.27, 5.52, 6.20, 6.66, 6.98, 6.93, 5.50, 3.60,
            0.036, 0.016, 0.009]) * 1e-20
 
 def sigma(x):
-    s = UnivariateSpline(E, Q, s=0, k=3)
-    return s(x)
+    s = UnivariateSpline(E, Q, s=0, k=2)
+    output = s(x[x <= 700 * q])
+    output = append(output, 1e-38 / (x[x > 700 * q])) 
+    return output
