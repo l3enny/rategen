@@ -8,9 +8,9 @@ temperatures = np.logspace(-1, 2) * q
 
 # Define the distribution to use and any inputs besides the temperature
 distribution = distributions.drumax
-kargs = {'x':0.5}
+kargs = {'x':1.0}
 
-dump = 'ralchenko'
+dump = 'ralchenko_m'
 comments = {'Cross-Sections':'Ralchenko, 2008',
             'Distribution':'Generalized Maxwellian',
             'x':kargs['x'],
