@@ -10,9 +10,11 @@ temperatures = np.logspace(-1, 2) * q
 distribution = distributions.drumax
 kargs = {'x':0.5}
 
-dump = 'ralchenko'
+dump = 'ralchenko_x=0.5'
 comments = {'Cross-Sections':'Ralchenko, 2008',
             'Distribution':'Generalized Maxwellian',
             'x':kargs['x'],
             'Temperatures':'0.1-100 eV, log spacing, 50 points',
             'Author':'Ben Yee'}
+
+elastic = False

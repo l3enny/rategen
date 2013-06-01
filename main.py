@@ -5,7 +5,7 @@ import cPickle
 from constants import kB
 import convolve
 import rates
-import settings_pack_m as settings
+from settings import ralchenko_1p0 as settings
 
 output = []
 for temperature in settings.temperatures:
