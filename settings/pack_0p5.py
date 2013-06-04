@@ -9,7 +9,7 @@ temperatures = np.logspace(-1, np.log10(200)) * q
 distribution = distributions.drumax
 kargs = {'x':0.5}
 
-dump = 'pack_x=0.5'
+dump = 'pack_0p5'
 comments = {'Cross-Sections':'Pack, 1992',
             'Distribution':'Generalized Maxwellian',
             'x':kargs['x'],
