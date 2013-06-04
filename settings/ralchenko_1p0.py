@@ -10,7 +10,7 @@ temperatures = np.logspace(-1, 2) * q
 distribution = distributions.drumax
 kargs = {'x':1.0}
 
-dump = 'ralchenko_1p0'
+dump = 'ralchenko_x=1.0'
 comments = {'Cross-Sections':'Ralchenko, 2008',
             'Distribution':'Generalized Maxwellian',
             'x':kargs['x'],
