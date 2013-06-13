@@ -36,3 +36,5 @@ nosetests.xml
 
 # Binary Files
 *.pickle
+
+.DS_Store
