@@ -51,7 +51,6 @@ for lindex in range(start + 13, len(lines)):
 
 # Provide method to access interpolation of values
 def rrc(state, temperature):
-    print state
     if state == 100:
         state = '0000'
     elif state != 'ion':
