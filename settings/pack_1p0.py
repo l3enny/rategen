@@ -14,5 +14,5 @@ comments = {'Cross-Sections':'Pack, 1992',
             'Distribution':'Generalized Maxwellian',
             'x':kargs['x'],
             'Temperatures':'0.1-300 eV, log spacing, 100 points',
-            'Author':'Ben Yee'}
+            'Compiler':'Ben Yee'}
 elastic = True

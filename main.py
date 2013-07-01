@@ -7,8 +7,8 @@ from scipy.constants import *
 # Included packages
 import convolve
 import rates
-from settings import ralchenko_1p0 as settings
-from settings import nahar
+
+from settings import combined as settings
 
 output = []
 for temperature in settings.temperatures:
@@ -23,7 +23,7 @@ for temperature in settings.temperatures:
             output[-1][i] = {}
             for f in settings.states:
                 if i == 'ion':
-                    K = nahar.rrc(f, temperature)
+                    K = settings.nahar.rrc(f, temperature)
                 else:
                     transition = settings.xsections.Transition(i, f)
                     K = convolve.rate(transition, eedf)
