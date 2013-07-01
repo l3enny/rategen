@@ -8,8 +8,7 @@ calculations do not evaluate at predictable or specified values of E.
 
 from numpy import array, log, exp
 from scipy.special import gamma
-
-from constants import *
+from scipy.constants import *
 
 def drumax(T, x):
     def dist(E):

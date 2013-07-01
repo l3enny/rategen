@@ -1,4 +1,5 @@
 from scipy.interpolate import UnivariateSpline
+from scipy.interpolate import interp1d
 
 class Rates(object):
 
@@ -11,14 +12,14 @@ class Rates(object):
         self.comments = comments
 
     def rate(self, Te, i, f):
-        #TODO: Store splines in memory for speedup
         select = []
         for table in self.rates:
             select.append(table[i][f])
-        spline = UnivariateSpline(self.temperatures, select, s=0, k=2)
-        return spline(Te)
+        #spline = UnivariateSpline(self.temperatures, select, s=0, k=2)
+        func = interp1d(self.temperatures, select, kind='cubic')
+        return func(Te)
 
     def km(self, Te):
-        #TODO: Store splines in memory for speedup
-        spline = UnivariateSpline(self.temperatures, self.rates, s=0, k=2)
-        return spline(Te)
+        #spline = UnivariateSpline(self.temperatures, self.rates, s=0, k=2)
+        func = interp1d(self.temperatures, select, kind='cubic')
+        return func(Te)

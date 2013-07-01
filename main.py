@@ -1,11 +1,14 @@
 # Standard library modules
 import cPickle
 
+# Third party packages
+from scipy.constants import *
+
 # Included packages
-from constants import kB
 import convolve
 import rates
 from settings import ralchenko_1p0 as settings
+from settings import nahar
 
 output = []
 for temperature in settings.temperatures:
@@ -19,11 +22,14 @@ for temperature in settings.temperatures:
         for i in settings.states:
             output[-1][i] = {}
             for f in settings.states:
-                transition = settings.xsections.Transition(i, f)
-                K = convolve.rate(transition, eedf)
+                if i == 'ion':
+                    K = nahar.rrc(f, temperature)
+                else:
+                    transition = settings.xsections.Transition(i, f)
+                    K = convolve.rate(transition, eedf)
                 output[-1][i][f] = K
 
-container = rates.Rates(settings.temperatures/kB, output, settings.comments)
+container = rates.Rates(settings.temperatures/k, output, settings.comments)
 
 with open(settings.dump + '.pickle', mode='w') as f:
     p = cPickle.Pickler(f, protocol=2)
