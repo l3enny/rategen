@@ -3,6 +3,7 @@ import re
 import numpy as np
 from scipy.constants import *
 from scipy.interpolate import interp1d
+from scipy.interpolate import UnivariateSpline
 
 # Notify user that the recombination coefficents are for Maxwellian temperatures
 print "***NOTE*** Using Maxwellian recombination rate coefficients!"
@@ -26,7 +27,8 @@ for line in lines[start:start+14]:
     items = line.split()
     for i in items:
         if "(K)" in i:
-            temperatures.append(float(i.split("(K)")[0]))
+            temperatures.append(float(i.split("(K)")[0]) * k)
+temperatures = np.array(temperatures)
 
 # Read in the reaction rates for each temperature
 for lindex in range(start + 13, len(lines)):
@@ -49,8 +51,13 @@ for lindex in range(start + 13, len(lines)):
 
 # Provide method to access interpolation of values
 def rrc(state, temperature):
-    state = '0' + str(state)
-    if state == '0100':
+    print state
+    if state == 100:
         state = '0000'
-    func = interp1d(temperatures, sigmas[states.index(state)], kind='cubic')
+    elif state != 'ion':
+        state = '0' + str(state)
+    else:
+        return np.zeros(temperature.shape)
+    #func = interp1d(temperatures, sigmas[states.index(state)])
+    func = UnivariateSpline(temperatures, sigmas[states.index(state)], s=0, k=2)
     return func(temperature)

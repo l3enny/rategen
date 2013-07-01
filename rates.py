@@ -15,11 +15,11 @@ class Rates(object):
         select = []
         for table in self.rates:
             select.append(table[i][f])
-        #spline = UnivariateSpline(self.temperatures, select, s=0, k=2)
-        func = interp1d(self.temperatures, select, kind='cubic')
+        func = UnivariateSpline(self.temperatures, select, s=0, k=2)
+        #func = interp1d(self.temperatures, select)
         return func(Te)
 
     def km(self, Te):
-        #spline = UnivariateSpline(self.temperatures, self.rates, s=0, k=2)
-        func = interp1d(self.temperatures, select, kind='cubic')
+        func = UnivariateSpline(self.temperatures, self.rates, s=0, k=2)
+        #func = interp1d(self.temperatures, self.rates)
         return func(Te)
