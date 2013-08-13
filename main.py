@@ -8,7 +8,7 @@ from scipy.constants import *
 import convolve
 import rates
 
-from settings import pack_1p0 as settings
+from settings import combined as settings
 
 output = []
 for temperature in settings.temperatures:
