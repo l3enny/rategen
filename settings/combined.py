@@ -4,9 +4,9 @@ from xsections.helium.states import states
 
 import distributions
 import numpy as np
-from constants import q
+from scipy.constants import e
 
-temperatures = np.logspace(-1, np.log10(300), 1e2) * q
+temperatures = np.logspace(-1, np.log10(300), 1e2) * e
 
 # Define the distribution to use and any inputs besides the temperature
 distribution = distributions.drumax
