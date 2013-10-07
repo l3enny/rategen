@@ -11,12 +11,12 @@ Yu. Ralchenko et al. Atomic Data and Nuclear Data Tables 94 (2008)
 """
 
 from states import states
-from scipy.constants import e, pi, physical_constants
+from scipy.constants import e, k, m_e, physical_constants
+a0 = physical_constants["Bohr radius"][0]
+Ry = physical_constants["Rydberg constant times hc in J"][0]
 import numpy as np
 from numpy import log
-
-a0 = physical_constants["Bohr radius"][0]
-Ry = physical_constants["Rydberg constant times hc in eV"][0]
+from math import pi
 
 # transition list format:
 # constants = {
@@ -527,7 +527,7 @@ class Transition(object):
             summed = 0.0
             for i in range(1,6):
                 summed += A[i] * (1 - I/E)**i
-            sigma = q**2 * 1e-13/(I*E) * (A[0]*log(E/I) + summed) * 1e-4
+            sigma = e**2 * 1e-13/(I*E) * (A[0]*log(E/I) + summed) * 1e-4
             return np.append(zeros, sigma)
 
         if self.transition['type'] is 'da':
